@@ -1,3 +1,3 @@
-module metro.com/m
+module github.com/bodagovsky/metro-project
 
 go 1.17
