@@ -6,37 +6,32 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 
 	"github.com/bodagovsky/metro-project/models"
 )
 const (
-	linesPath = "/database/lines.json"
-	stationsPath = "/database/stations.json"
+	linesPath = "/Users/aabodagovskiy/metro-project/metro-project/database/lines.json"
+	stationsPath = "/Users/aabodagovskiy/metro-project/metro-project/database/stations.json"
 )
 
 type storage struct {
 	lines map[string]*models.MetroLine
 	stations map[string]*models.MetroStation
-}
-
-type Storage interface {
-	Type() string
+	//key - lineID, value - []metroStation
+	stationsByLine map[int][]*models.MetroStation
 }
 
 func New() *storage {
-	wd, err := os.Getwd()
-	if err != nil {
-		panic(err)
-	}
 	linesData := make(map[string]*models.MetroLine)
 	stationsData := make(map[string]*models.MetroStation)
 
-	linesFile, err := os.Open(wd + linesPath)
+	linesFile, err := os.Open(linesPath)
 	if err != nil {
 		panic(err)
 	}
 	defer linesFile.Close()
-	stationsFile, err := os.Open(wd + stationsPath)
+	stationsFile, err := os.Open(stationsPath)
 	if err != nil {
 		panic(err)
 	}
@@ -50,14 +45,34 @@ func New() *storage {
 	if err != nil {
 		panic(fmt.Errorf("failed to init storage: %s", err.Error()))
 	}
+
+	stationsByLine := make(map[int][]*models.MetroStation)
+
+	for _, station := range stationsData {
+		if _, ok := stationsByLine[station.LineID]; !ok {
+			stationsByLine[station.LineID] = make([]*models.MetroStation, 0)
+		}
+		stationsByLine[station.LineID] = append(stationsByLine[station.LineID], station)
+	}
+
+	for lineID, stations := range stationsByLine {
+		sort.Slice(stations, func(i, j int) bool {
+			return stations[i].Id < stations[j].Id
+		})
+		stationsByLine[lineID] = stations
+	}
 	return &storage{
-		linesData,
-		stationsData,
+		lines:linesData,
+		stations: stationsData,
+		stationsByLine: stationsByLine,
 	}
 }
 
-func (s *storage) Type() string {
-	return "json storage"
+func (s *storage) GetStationsByLineID(lineID int) ([]*models.MetroStation, error) {
+	if stations, ok := s.stationsByLine[lineID]; ok {
+		return stations, nil
+	}
+	return nil, errors.New("no such line")
 }
 
 func mapData(destination interface{}, source *os.File) error {
