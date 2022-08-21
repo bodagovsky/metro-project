@@ -4,118 +4,122 @@
     "title": "Сокольническая",
     "color": 0,
     "stations": [],
-    "crosses": []
+    "crosses": {
+      "2": [10]
+    }
   },
   "2":{
     "id": 2,
     "title": "Замоскворецкая",
     "color": 1,
     "stations": [],
-    "crosses": []
+    "crosses": {
+      "1": [38]
+    }
   },
   "3":{
     "id": 3,
     "title": "Арбатско-Покровская",
     "color": 2,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "4":{
     "id": 4,
     "title": "Филевская",
     "color": 3,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "5":{
     "id": 5,
     "title": "Кольцевая",
     "color": 4,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "6":{
     "id": 6,
     "title": "Калужско-Рижская",
     "color": 5,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "7":{
     "id": 7,
     "title": "Таганско-Краснопресненская",
     "color": 6,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "8":{
     "id": 8,
     "title": "Калининская",
     "color": 7,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "9":{
     "id": 9,
     "title": "Солнцевская",
     "color": 8,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "10":{
     "id": 10,
     "title": "Серпуховско-Тимирязевская",
     "color": 9,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "11":{
     "id": 11,
     "title": "Люблинско-Дмитровская",
     "color": 10,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "12":{
     "id": 12,
     "title": "Большая кольцевая",
     "color": 11,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "13":{
     "id": 13,
     "title": "Каховская",
     "color": 12,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "14":{
     "id": 14,
     "title": "Бутовская",
     "color": 13,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "15":{
     "id": 15,
     "title": "Некрасовская",
     "color": 14,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "16": {
     "id": 16,
     "title": "Монорельс",
     "color": 15,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   },
   "17": {
     "id": 17,
     "title": "Московское центральное кольцо (МЦК)",
     "color": 16,
     "stations": [],
-    "crosses": []
+    "crosses": {}
   }
 }

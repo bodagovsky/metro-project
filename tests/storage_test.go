@@ -20,6 +20,51 @@ func TestStorage_StationsSortedById(t *testing.T) {
 	}))
 }
 
+func TestStorage_GetLineByID(t *testing.T) {
+	storage := database.New()
+	testCases := []struct{
+		id int
+		title string
+		expected *models.MetroLine
+	}{
+		{
+			id: 1,
+			title: "Сокольническая",
+			expected: &models.MetroLine{
+				Id:       1,
+				Title:    "Сокольническая",
+				Color:    0,
+				Stations: []int{},
+				Crosses: map[string][]int{
+					"2": {10},
+				},
+			},
+		},
+		{
+			id: 2,
+			title: "Замоскворецкая",
+			expected: &models.MetroLine{
+				Id:       2,
+				Title:    "Замоскворецкая",
+				Color:    1,
+				Stations: []int{},
+				Crosses: map[string][]int{
+					"1": {38},
+				},
+			},
+		},
+	}
+
+	for _, test := range testCases {
+		t.Run(test.title, func(t *testing.T) {
+			line, err := storage.GetLineByID(test.id)
+			assert.NoError(t, err)
+			assert.Equal(t, test.expected, line)
+		})
+	}
+
+}
+
 func TestStorage_GetRoute_SameLine(t *testing.T) {
 	storage := database.New()
 

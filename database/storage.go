@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"sort"
+	"strconv"
 
 	"github.com/bodagovsky/metro-project/models"
 )
@@ -72,8 +73,16 @@ func (s *storage) GetStationsByLineID(lineID int) ([]*models.MetroStation, error
 	if stations, ok := s.stationsByLine[lineID]; ok {
 		return stations, nil
 	}
-	return nil, errors.New("no such line")
+	return nil, errors.New(fmt.Sprintf("no line found with id %d", lineID))
 }
+func (s *storage) GetLineByID(lineID int) (*models.MetroLine, error) {
+	id := strconv.Itoa(lineID)
+	if line, ok := s.lines[id]; ok {
+		return line, nil
+	}
+	return nil, errors.New(fmt.Sprintf("no line found with id %d", lineID))
+}
+
 
 func mapData(destination interface{}, source *os.File) error {
 	switch t := destination.(type) {

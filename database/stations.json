@@ -67,7 +67,7 @@
     "title": "Охотный Ряд",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors:":[38]
   },
   "11": {
     "id": 11,
@@ -184,6 +184,167 @@
   "27": {
     "id": 1,
     "title": "Ховрино",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "28": {
+    "id": 2,
+    "title": "Беломорская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "29": {
+    "id": 3,
+    "title": "Речной вокзал",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "30": {
+    "id": 4,
+    "title": "Водный стадион",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "31": {
+    "id": 5,
+    "title": "Войковская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "32": {
+    "id": 6,
+    "title": "Сокол",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "33": {
+    "id": 7,
+    "title": "Аэропорт",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "34": {
+    "id": 8,
+    "title": "Динамо",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "35": {
+    "id": 9,
+    "title": "Белорусская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "36": {
+    "id": 10,
+    "title": "Маяковская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "37": {
+    "id": 11,
+    "title": "Тверская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "38": {
+    "id": 12,
+    "title": "Театральная",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[10]
+  },
+  "39": {
+    "id": 13,
+    "title": "Новокузнецкая",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "40": {
+    "id": 14,
+    "title": "Павелецкая",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "41": {
+    "id": 15,
+    "title": "Автозаводская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "42": {
+    "id": 16,
+    "title": "Технопарк",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "43": {
+    "id": 17,
+    "title": "Коломенская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "44": {
+    "id": 18,
+    "title": "Каширская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "45": {
+    "id": 19,
+    "title": "Кантемировская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "46": {
+    "id": 20,
+    "title": "Царицыно",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "47": {
+    "id": 21,
+    "title": "Орехово",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "48": {
+    "id": 22,
+    "title": "Домодедовская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "49": {
+    "id": 23,
+    "title": "Красногвардейская",
+    "isClosed": false,
+    "lineID": 2,
+    "neighbors:":[]
+  },
+  "50": {
+    "id": 24,
+    "title": "Алма-Атинская",
     "isClosed": false,
     "lineID": 2,
     "neighbors:":[]
