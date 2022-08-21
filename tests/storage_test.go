@@ -177,3 +177,62 @@ func TestStorage_GetRoute_SameLine_Inverted(t *testing.T) {
 		assert.Equal(t, expected[i], r)
 	}
 }
+
+func TestStorage_GetRoute_DiffLine(t *testing.T) {
+	storage := database.New()
+
+	getRoute := &handlers.GetRouteRequest{
+		From: handlers.Station{
+			Id:        1,
+			StationId: 1,
+			LineId:    1,
+		},
+		To: handlers.Station{
+			Id:        27,
+			StationId: 1,
+			LineId:    2,
+		},
+	}
+
+	_, err := handlers.GetRoute(getRoute, storage)
+	assert.NoError(t, err)
+}
+
+func TestTraverse(t *testing.T) {
+	storage := database.New()
+	node := &models.MetroLine{
+		Id:       1,
+		Title:    "Сокольническая",
+		Color:    0,
+		Stations: []int{},
+		Crosses: map[string][]int{
+			"2": {10},
+		},
+	}
+	target := 2
+	expectedPath := []*models.MetroLine{
+		{
+			Id:       1,
+			Title:    "Сокольническая",
+			Color:    0,
+			Stations: []int{},
+			Crosses: map[string][]int{
+				"2": {10},
+			},
+		},
+		{
+			Id:       2,
+			Title:    "Замоскворецкая",
+			Color:    1,
+			Stations: []int{},
+			Crosses: map[string][]int{
+				"1": {38},
+			},
+		},
+	}
+
+	path , found := handlers.Traverse(node, target, storage)
+	assert.True(t, found)
+	assert.NotNil(t, path)
+	assert.ElementsMatch(t, expectedPath, path)
+}
