@@ -23,12 +23,13 @@ const (
 )
 
 type MetroStation struct {
-	Id        int    `json:"id"`
-	Title     string `json:"title"`
-	IsClosed  bool   `json:"is_closed"`
-	OnCross   bool   `json:"on_cross"`
-	LineID    int    `json:"lineID"`
-	Neighbors []int  `json:"neighbors"`
+	Id         int    `json:"id"`
+	ExternalID int    `json:"externalID"`
+	Title      string `json:"title"`
+	IsClosed   bool   `json:"is_closed"`
+	OnCross    bool   `json:"on_cross"`
+	LineID     int    `json:"lineID"`
+	Neighbors  []int  `json:"neighbors"`
 }
 
 type MetroLine struct {
@@ -37,4 +38,8 @@ type MetroLine struct {
 	Color    Color            `json:"color"`
 	Stations []int            `json:"stations"`
 	Crosses  map[string][]int `json:"crosses"`
+}
+
+func BuildGraph() *Node {
+	return &Node{}
 }

@@ -2,14 +2,9 @@ package handlers
 
 import (
 	"errors"
+	"github.com/bodagovsky/metro-project/database"
 	"github.com/bodagovsky/metro-project/models"
-	"strconv"
 )
-
-type Storage interface {
-	GetStationsByLineID(lineID int) ([]*models.MetroStation, error)
-	GetLineByID(lineID int) (*models.MetroLine, error)
-}
 
 type Station struct {
 	Id        int
@@ -26,9 +21,7 @@ type GetRouteResponse struct {
 	Path [][]*models.MetroStation
 }
 
-var visitedLines = map[int]bool{}
-
-func GetRoute(request *GetRouteRequest, s Storage) (*GetRouteResponse, error) {
+func GetRoute(request *GetRouteRequest, s database.Storage) (*GetRouteResponse, error) {
 	var stationsOut []*models.MetroStation
 	var err error
 
@@ -42,7 +35,7 @@ func GetRoute(request *GetRouteRequest, s Storage) (*GetRouteResponse, error) {
 			return nil, err
 		}
 	} else {
-		stationsOut, err = getRouteDifferentLane(request, s)
+		stationsOut, err = getRouteDifferentLine(request, s)
 		if err != nil {
 			return nil, err
 		}
@@ -51,34 +44,31 @@ func GetRoute(request *GetRouteRequest, s Storage) (*GetRouteResponse, error) {
 	return response, nil
 }
 
-func getRouteSameLine(request *GetRouteRequest, s Storage) ([]*models.MetroStation, error) {
+func getRouteSameLine(request *GetRouteRequest, s database.Storage) ([]*models.MetroStation, error) {
 	var stationsOut []*models.MetroStation
 	stations, err := s.GetStationsByLineID(request.From.LineId)
 	if err != nil {
 		return nil, err
 	}
-	if request.From.StationId > request.To.StationId {
-		for _, station := range stations[request.To.StationId-1 : request.From.StationId] {
-			//todo get rid of defer statement
-			defer func(s *models.MetroStation) {
-				stationsOut = append(stationsOut, s)
-			}(station)
-		}
-	} else {
-		stationsOut = append(stationsOut, stations[request.From.StationId-1:request.To.StationId]...)
+	i, j := minMax(request.From.Id, request.To.Id)
+
+	stationsOut = append(stationsOut, stations[i-1:j]...)
+	if request.From.Id > request.To.Id {
+		reverse(stationsOut)
 	}
+
 	return stationsOut, nil
 }
 
-func getRouteDifferentLane(request *GetRouteRequest, s Storage) ([]*models.MetroStation, error) {
+func getRouteDifferentLine(request *GetRouteRequest, s database.Storage) ([]*models.MetroStation, error) {
 	var stationsOut []*models.MetroStation
 	var found bool
 
-	start, err := s.GetLineByID(request.From.LineId)
+	_, err := s.GetLineByID(request.From.LineId)
 	if err != nil {
 		return nil, err
 	}
-	_, found = Traverse(start, request.To.LineId, s)
+
 	if !found {
 		return nil, errors.New("не нашелся путь от линии %s до %s")
 	}
@@ -86,27 +76,19 @@ func getRouteDifferentLane(request *GetRouteRequest, s Storage) ([]*models.Metro
 	return stationsOut, nil
 }
 
-func Traverse(node *models.MetroLine, target int, s Storage) ([]*models.MetroLine, bool) {
-	if _, ok := visitedLines[node.Id] ; ok {
-		return nil, false
+func reverse(stations []*models.MetroStation) {
+	i := 0
+	j := len(stations) - 1
+	for i < j {
+		stations[i], stations[j] = stations[j], stations[i]
+		i++
+		j--
 	}
-	visitedLines[node.Id] = true
-	if node.Id == target {
-		return []*models.MetroLine{node}, true
+}
+
+func minMax(i, j int) (min int, max int) {
+	if i > j {
+		return j, i
 	}
-	for lineID, _ := range node.Crosses {
-		id, err := strconv.Atoi(lineID)
-		if err != nil {
-			panic(err)
-		}
-		line, err := s.GetLineByID(id)
-		if err != nil {
-			panic(err)
-		}
-		nodes, found := Traverse(line, target, s)
-		if found {
-			return append(nodes, node), found
-		}
-	}
-	return nil, false
+	return i, j
 }

@@ -1,352 +1,402 @@
 {
   "1": {
     "id": 1,
+    "externalID": 1,
     "title": "Бульвар Рокоссовского",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "2":{
     "id": 2,
+    "externalID": 2,
     "title": "Черкизовская",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "3": {
     "id": 3,
+    "externalID": 3,
     "title": "Преображенская площадь",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "4": {
     "id": 4,
+    "externalID": 4,
     "title": "Сокольники",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "5": {
     "id": 5,
+    "externalID": 5,
     "title": "Красносельская",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "6": {
     "id": 6,
+    "externalID": 6,
     "title": "Комсомольская",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "7": {
     "id": 7,
+    "externalID": 7,
     "title": "Красные Ворота",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "8": {
     "id": 8,
+    "externalID": 8,
     "title": "Чистые пруды",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "9": {
     "id": 9,
+    "externalID": 9,
     "title": "Лубянка",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "10": {
     "id": 10,
+    "externalID": 10,
     "title": "Охотный Ряд",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[38]
+    "neighbors":[38]
   },
   "11": {
     "id": 11,
+    "externalID": 11,
     "title": "Библиотека имени Ленина",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "12": {
     "id": 12,
+    "externalID": 12,
     "title": "Кропоткинская",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "13": {
     "id": 13,
+    "externalID": 13,
     "title": "Парк культуры",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "14": {
     "id": 14,
+    "externalID": 14,
     "title": "Фрунзенская",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "15": {
     "id": 15,
+    "externalID": 15,
     "title": "Спортивная",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "16": {
     "id": 16,
+    "externalID": 16,
     "title": "Воробьёвы горы",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "17": {
     "id": 17,
+    "externalID": 17,
     "title": "Университет",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "18": {
     "id": 18,
+    "externalID": 18,
     "title": "Проспект Вернадского",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "19": {
     "id": 19,
+    "externalID": 19,
     "title": "Юго-Западная",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "20": {
     "id": 20,
+    "externalID": 20,
     "title": "Тропарёво",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "21": {
     "id": 21,
+    "externalID": 21,
     "title": "Румянцево",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "22": {
     "id": 22,
+    "externalID": 22,
     "title": "Саларьево",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "23": {
     "id": 23,
+    "externalID": 23,
     "title": "Филатов Луг",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "24": {
     "id": 24,
+    "externalID": 24,
     "title": "Прокшино",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "25": {
     "id": 25,
+    "externalID": 25,
     "title": "Ольховая",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "26": {
     "id": 26,
+    "externalID": 26,
     "title": "Коммунарка",
     "isClosed": false,
     "lineID": 1,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "27": {
     "id": 1,
+    "externalID": 27,
     "title": "Ховрино",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "28": {
     "id": 2,
+    "externalID": 28,
     "title": "Беломорская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "29": {
     "id": 3,
+    "externalID": 29,
     "title": "Речной вокзал",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "30": {
     "id": 4,
+    "externalID": 30,
     "title": "Водный стадион",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "31": {
     "id": 5,
+    "externalID": 31,
     "title": "Войковская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "32": {
     "id": 6,
+    "externalID": 32,
     "title": "Сокол",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "33": {
     "id": 7,
+    "externalID": 33,
     "title": "Аэропорт",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "34": {
     "id": 8,
+    "externalID": 34,
     "title": "Динамо",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "35": {
     "id": 9,
+    "externalID": 35,
     "title": "Белорусская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "36": {
     "id": 10,
+    "externalID": 36,
     "title": "Маяковская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "37": {
     "id": 11,
+    "externalID": 37,
     "title": "Тверская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "38": {
     "id": 12,
+    "externalID": 38,
     "title": "Театральная",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[10]
+    "neighbors": [10]
   },
   "39": {
     "id": 13,
+    "externalID": 39,
     "title": "Новокузнецкая",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "40": {
     "id": 14,
+    "externalID": 40,
     "title": "Павелецкая",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "41": {
     "id": 15,
+    "externalID": 41,
     "title": "Автозаводская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "42": {
     "id": 16,
+    "externalID": 42,
     "title": "Технопарк",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "43": {
     "id": 17,
+    "externalID": 43,
     "title": "Коломенская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "44": {
     "id": 18,
+    "externalID": 44,
     "title": "Каширская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "45": {
     "id": 19,
+    "externalID": 45,
     "title": "Кантемировская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "46": {
     "id": 20,
+    "externalID": 46,
     "title": "Царицыно",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "47": {
     "id": 21,
+    "externalID": 47,
     "title": "Орехово",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "48": {
     "id": 22,
+    "externalID": 48,
     "title": "Домодедовская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "49": {
     "id": 23,
+    "externalID": 49,
     "title": "Красногвардейская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   },
   "50": {
     "id": 24,
+    "externalID": 50,
     "title": "Алма-Атинская",
     "isClosed": false,
     "lineID": 2,
-    "neighbors:":[]
+    "neighbors":[]
   }
 }

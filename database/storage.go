@@ -11,13 +11,22 @@ import (
 
 	"github.com/bodagovsky/metro-project/models"
 )
+
 const (
-	linesPath = "/Users/aabodagovskiy/metro-project/metro-project/database/lines.json"
+	linesPath    = "/Users/aabodagovskiy/metro-project/metro-project/database/lines.json"
 	stationsPath = "/Users/aabodagovskiy/metro-project/metro-project/database/stations.json"
 )
 
+var _ Storage = &storage{}
+
+type Storage interface {
+	GetStationsByLineID(lineID int) ([]*models.MetroStation, error)
+	GetLineByID(lineID int) (*models.MetroLine, error)
+	GetStationByID(stationID int) (*models.MetroStation, error)
+}
+
 type storage struct {
-	lines map[string]*models.MetroLine
+	lines    map[string]*models.MetroLine
 	stations map[string]*models.MetroStation
 	//key - lineID, value - []metroStation
 	stationsByLine map[int][]*models.MetroStation
@@ -63,8 +72,8 @@ func New() *storage {
 		stationsByLine[lineID] = stations
 	}
 	return &storage{
-		lines:linesData,
-		stations: stationsData,
+		lines:          linesData,
+		stations:       stationsData,
 		stationsByLine: stationsByLine,
 	}
 }
@@ -83,6 +92,13 @@ func (s *storage) GetLineByID(lineID int) (*models.MetroLine, error) {
 	return nil, errors.New(fmt.Sprintf("no line found with id %d", lineID))
 }
 
+func (s *storage) GetStationByID(stationID int) (*models.MetroStation, error) {
+	id := strconv.Itoa(stationID)
+	if station, ok := s.stations[id]; ok {
+		return station, nil
+	}
+	return nil, errors.New(fmt.Sprintf("no station found with id %d", stationID))
+}
 
 func mapData(destination interface{}, source *os.File) error {
 	switch t := destination.(type) {
