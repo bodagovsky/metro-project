@@ -11,6 +11,12 @@ type Node struct {
 	visited bool
 }
 
+func NewNode() *Node {
+	return &Node{
+		Next: make([]*Node, 0),
+	}
+}
+
 func (n *Node) TraverseDFS(target int) ([]*Node, bool) {
 	n.visited = true
 

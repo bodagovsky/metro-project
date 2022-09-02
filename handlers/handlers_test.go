@@ -1,9 +1,10 @@
 package handlers
 
 import (
+	"testing"
+
 	"github.com/bodagovsky/metro-project/models"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestReverse(t *testing.T) {
@@ -35,7 +36,7 @@ func TestReverse(t *testing.T) {
 			Title: "Бульвар Рокоссовского",
 		},
 	}
-	reverse(input)
+	models.Reverse(input)
 	for i, st := range input {
 		assert.Equal(t, expected[i], st)
 	}

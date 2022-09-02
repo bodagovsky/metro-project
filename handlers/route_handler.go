@@ -54,7 +54,7 @@ func getRouteSameLine(request *GetRouteRequest, s database.Storage) ([]*models.M
 
 	stationsOut = append(stationsOut, stations[i-1:j]...)
 	if request.From.Id > request.To.Id {
-		reverse(stationsOut)
+		models.Reverse(stationsOut)
 	}
 
 	return stationsOut, nil
@@ -74,16 +74,6 @@ func getRouteDifferentLine(request *GetRouteRequest, s database.Storage) ([]*mod
 	}
 
 	return stationsOut, nil
-}
-
-func reverse(stations []*models.MetroStation) {
-	i := 0
-	j := len(stations) - 1
-	for i < j {
-		stations[i], stations[j] = stations[j], stations[i]
-		i++
-		j--
-	}
 }
 
 func minMax(i, j int) (min int, max int) {

@@ -4,13 +4,12 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/bodagovsky/metro-project/handlers"
-	"github.com/bodagovsky/metro-project/models"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/stretchr/testify/assert"
-
 	"github.com/bodagovsky/metro-project/database"
+	"github.com/bodagovsky/metro-project/handlers"
+	"github.com/bodagovsky/metro-project/models"
 )
 
 func TestStorage_StationsSortedById(t *testing.T) {
@@ -412,4 +411,72 @@ func TestStorage_GetRoute_DiffLine(t *testing.T) {
 	path, err := handlers.GetRoute(getRoute, storage)
 	assert.NoError(t, err)
 	assert.Equal(t, len(path.Path), 2)
+}
+
+func TestStorage_Graph_FindPath(t *testing.T) {
+	storage := database.New()
+
+	graph := storage.BuildGraph()
+	assert.NotNil(t, graph)
+	tverskaya := 37
+	expected := []struct {
+		id    int
+		title string
+	}{
+		{
+			37,
+			"Тверская",
+		},
+		{
+			38,
+			"Театральная",
+		},
+		{
+			10,
+			"Охотный Ряд",
+		},
+		{
+			9,
+			"Лубянка",
+		},
+		{
+			8,
+			"Чистые пруды",
+		},
+		{
+			7,
+			"Красные Ворота",
+		},
+		{
+			6,
+			"Комсомольская",
+		},
+		{
+			5,
+			"Красносельская",
+		},
+		{
+			4,
+			"Сокольники",
+		},
+		{
+			3,
+			"Преображенская площадь",
+		},
+		{
+			2,
+			"Черкизовская",
+		},
+		{
+			1,
+			"Бульвар Рокоссовского",
+		},
+	}
+	path, found := graph.TraverseDFS(tverskaya)
+	assert.True(t, found)
+
+	for i, node := range path {
+		assert.Equal(t, expected[i].id, node.Id)
+		assert.Equal(t, expected[i].title, node.Title)
+	}
 }

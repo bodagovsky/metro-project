@@ -40,6 +40,12 @@ type MetroLine struct {
 	Crosses  map[string][]int `json:"crosses"`
 }
 
-func BuildGraph() *Node {
-	return &Node{}
+func Reverse(stations []*MetroStation) {
+	i := 0
+	j := len(stations) - 1
+	for i < j {
+		stations[i], stations[j] = stations[j], stations[i]
+		i++
+		j--
+	}
 }

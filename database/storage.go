@@ -30,6 +30,7 @@ type storage struct {
 	stations map[string]*models.MetroStation
 	//key - lineID, value - []metroStation
 	stationsByLine map[int][]*models.MetroStation
+	graph          map[int]*models.Node
 }
 
 func New() *storage {
@@ -75,6 +76,7 @@ func New() *storage {
 		lines:          linesData,
 		stations:       stationsData,
 		stationsByLine: stationsByLine,
+		graph:          map[int]*models.Node{},
 	}
 }
 
@@ -98,6 +100,82 @@ func (s *storage) GetStationByID(stationID int) (*models.MetroStation, error) {
 		return station, nil
 	}
 	return nil, errors.New(fmt.Sprintf("no station found with id %d", stationID))
+}
+
+func (s *storage) BuildGraph() *models.Node {
+	lines, err := s.GetStationsByLineID(1)
+	if err != nil {
+		panic(err)
+	}
+	return s.traverse(0, nil, lines)
+}
+
+func (s *storage) traverse(i int, parent *models.Node, stations []*models.MetroStation) *models.Node {
+	if i == len(stations) {
+		return nil
+	}
+	station := stations[i]
+
+	node := models.NewNode()
+	s.graph[station.ExternalID] = node
+
+	node.Id = station.ExternalID
+	node.Title = station.Title
+	node.IsClosed = station.IsClosed
+	node.LineID = station.LineID
+	if parent != nil {
+		node.Next = append(node.Next, parent)
+	}
+
+	nextNode := s.traverse(i+1, node, stations)
+
+	if nextNode != nil {
+		node.Next = append(node.Next, nextNode)
+	}
+
+	for _, id := range station.Neighbors {
+		if _, ok := s.graph[id]; ok {
+			continue
+		}
+
+		nextStation, err := s.GetStationByID(id)
+		if err != nil {
+			panic(err)
+		}
+		nextStations, err := s.GetStationsByLineID(nextStation.LineID)
+		if err != nil {
+			panic(err)
+		}
+		i := nextStation.Id - 1
+		leftPart := nextStations[:i]
+		rightPart := nextStations[i+1:]
+
+		models.Reverse(leftPart)
+
+		nextNode = models.NewNode()
+
+		nextNode.Id = nextStation.ExternalID
+		nextNode.Title = nextStation.Title
+		nextNode.IsClosed = nextStation.IsClosed
+		nextNode.LineID = nextStation.LineID
+
+		leftNode := s.traverse(0, nextNode, leftPart)
+		rightNode := s.traverse(0, nextNode, rightPart)
+
+		if leftNode != nil {
+			nextNode.Next = append(nextNode.Next, leftNode)
+		}
+
+		if rightNode != nil {
+			nextNode.Next = append(nextNode.Next, rightNode)
+		}
+
+		nextNode.Next = append(nextNode.Next, node)
+
+		node.Next = append(node.Next, nextNode)
+	}
+
+	return node
 }
 
 func mapData(destination interface{}, source *os.File) error {
