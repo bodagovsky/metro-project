@@ -410,13 +410,14 @@ func TestStorage_GetRoute_DiffLine(t *testing.T) {
 
 	path, err := handlers.GetRoute(getRoute, storage)
 	assert.NoError(t, err)
-	assert.Equal(t, len(path.Path), 2)
+	assert.Equal(t, 22, len(path.Path[0]))
 }
 
 func TestStorage_Graph_FindPath(t *testing.T) {
 	storage := database.New()
 
-	graph := storage.BuildGraph()
+	graph, err := storage.GetNodeById(1)
+	assert.NoError(t, err)
 	assert.NotNil(t, graph)
 	tverskaya := 37
 	expected := []struct {

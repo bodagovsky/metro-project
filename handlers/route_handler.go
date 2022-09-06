@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+
 	"github.com/bodagovsky/metro-project/database"
 	"github.com/bodagovsky/metro-project/models"
 )
@@ -64,16 +65,35 @@ func getRouteDifferentLine(request *GetRouteRequest, s database.Storage) ([]*mod
 	var stationsOut []*models.MetroStation
 	var found bool
 
-	_, err := s.GetLineByID(request.From.LineId)
+	root, err := s.GetNodeById(request.From.Id)
 	if err != nil {
 		return nil, err
 	}
 
+	path, found := root.TraverseDFS(request.To.Id)
 	if !found {
 		return nil, errors.New("не нашелся путь от линии %s до %s")
 	}
 
+	stationsOut = buildPath(path)
+
 	return stationsOut, nil
+}
+
+func buildPath(path []*models.Node) []*models.MetroStation {
+	var outPath = make([]*models.MetroStation, 0, len(path))
+
+	i := len(path) - 1
+	for i >= 0 {
+		var station = &models.MetroStation{}
+		station.Id = path[i].Id
+		station.LineID = path[i].LineID
+		station.Title = path[i].Title
+		outPath = append(outPath, station)
+		i--
+	}
+
+	return outPath
 }
 
 func minMax(i, j int) (min int, max int) {

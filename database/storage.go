@@ -23,6 +23,7 @@ type Storage interface {
 	GetStationsByLineID(lineID int) ([]*models.MetroStation, error)
 	GetLineByID(lineID int) (*models.MetroLine, error)
 	GetStationByID(stationID int) (*models.MetroStation, error)
+	GetNodeById(stationID int) (*models.Node, error)
 }
 
 type storage struct {
@@ -72,12 +73,16 @@ func New() *storage {
 		})
 		stationsByLine[lineID] = stations
 	}
-	return &storage{
+
+	s := &storage{
 		lines:          linesData,
 		stations:       stationsData,
 		stationsByLine: stationsByLine,
 		graph:          map[int]*models.Node{},
 	}
+
+	s.buildGraph()
+	return s
 }
 
 func (s *storage) GetStationsByLineID(lineID int) ([]*models.MetroStation, error) {
@@ -102,12 +107,19 @@ func (s *storage) GetStationByID(stationID int) (*models.MetroStation, error) {
 	return nil, errors.New(fmt.Sprintf("no station found with id %d", stationID))
 }
 
-func (s *storage) BuildGraph() *models.Node {
+func (s *storage) buildGraph() *models.Node {
 	lines, err := s.GetStationsByLineID(1)
 	if err != nil {
 		panic(err)
 	}
 	return s.traverse(0, nil, lines)
+}
+
+func (s *storage) GetNodeById(stationID int) (*models.Node, error) {
+	if node, ok := s.graph[stationID]; ok {
+		return node, nil
+	}
+	return nil, errors.New(fmt.Sprintf("no node with id %d", stationID))
 }
 
 func (s *storage) traverse(i int, parent *models.Node, stations []*models.MetroStation) *models.Node {
