@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"sort"
 	"strconv"
 
@@ -13,8 +14,8 @@ import (
 )
 
 const (
-	linesPath    = "/Users/aabodagovskiy/metro-project/metro-project/database/lines.json"
-	stationsPath = "/Users/aabodagovskiy/metro-project/metro-project/database/stations.json"
+	linesPath    = "/database/lines.json"
+	stationsPath = "/database/stations.json"
 )
 
 var _ Storage = &storage{}
@@ -38,12 +39,15 @@ func New() *storage {
 	linesData := make(map[string]*models.MetroLine)
 	stationsData := make(map[string]*models.MetroStation)
 
-	linesFile, err := os.Open(linesPath)
+	path, _ := os.Getwd()
+	dir := filepath.Dir(path)
+
+	linesFile, err := os.Open(dir + linesPath)
 	if err != nil {
 		panic(err)
 	}
 	defer linesFile.Close()
-	stationsFile, err := os.Open(stationsPath)
+	stationsFile, err := os.Open(dir + stationsPath)
 	if err != nil {
 		panic(err)
 	}
