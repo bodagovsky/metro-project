@@ -47,11 +47,10 @@ func TestNode_TraverseDFS(t *testing.T) {
 		},
 	}
 
-	path, found := graph.TraverseDFS(4)
-	require.True(t, found)
+	path := graph.TraverseDFS(4)
 	require.NotNil(t, path)
 
 	for i, node := range expected {
-		assert.Equal(t, node.Title, path[i].Title)
+		assert.Equal(t, node.Title, path[0].Root[i].Title)
 	}
 }

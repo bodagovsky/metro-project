@@ -473,11 +473,11 @@ func TestStorage_Graph_FindPath(t *testing.T) {
 			"Бульвар Рокоссовского",
 		},
 	}
-	path, found := graph.TraverseDFS(tverskaya)
-	assert.True(t, found)
+	path := graph.TraverseDFS(tverskaya)
+	assert.NotNil(t, path)
 
-	for i, node := range path {
-		assert.Equal(t, expected[i].id, node.Id)
-		assert.Equal(t, expected[i].title, node.Title)
+	for i, p := range path[0].Root {
+		assert.Equal(t, expected[i].id, p.Id)
+		assert.Equal(t, expected[i].title, p.Title)
 	}
 }
