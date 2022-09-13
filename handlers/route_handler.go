@@ -70,12 +70,13 @@ func getRouteDifferentLine(request *GetRouteRequest, s database.Storage) ([]*mod
 		return nil, err
 	}
 
-	path, found := root.TraverseDFS(request.To.Id)
+	path := root.TraverseDFS(request.To.Id)
 	if !found {
 		return nil, errors.New("не нашелся путь от линии %s до %s")
 	}
 
-	stationsOut = buildPath(path)
+	//todo extract the best path
+	stationsOut = buildPath(path[0].Root)
 
 	return stationsOut, nil
 }
